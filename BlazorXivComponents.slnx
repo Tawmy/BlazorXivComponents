@@ -1,0 +1,5 @@
+﻿<Solution>
+    <Project Path="BlazorXivComponents.Dev\BlazorXivComponents.Dev.Client\BlazorXivComponents.Dev.Client.csproj"
+             Type="Classic C#"/>
+    <Project Path="BlazorXivComponents.Dev\BlazorXivComponents.Dev\BlazorXivComponents.Dev.csproj" Type="Classic C#"/>
+</Solution>
