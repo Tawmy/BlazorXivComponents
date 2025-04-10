@@ -1,0 +1,12 @@
+﻿services:
+  main:
+    image: xiv-components
+    container_name: xiv-components
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: BlazorXivComponents.Dev/BlazorXivComponents.Dev/Dockerfile
+    environment:
+      LOGGING__LOGLEVEL__DEFAULT: Information
+      LOGGING__LOGLEVEL__MICROSOFT.ASPNETCORE: Warning
+
