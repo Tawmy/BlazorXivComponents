@@ -1,0 +1,10 @@
+.xiv-divider {
+    background: linear-gradient(to bottom,
+    rgb(22, 22, 22),
+    rgb(22, 22, 22) 33.3%,
+    rgb(49, 48, 49) 33.3%,
+    rgb(49, 48, 49) 66.6%,
+    rgb(86, 85, 86) 66.6%,
+    rgb(86, 85, 86)
+    );
+}

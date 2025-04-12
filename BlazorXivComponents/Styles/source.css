@@ -1,6 +1,23 @@
 @import "tailwindcss";
 
+@theme {
+    --color-xiv-frame-t: #c3c19b;
+    --color-xiv-frame-r: #9b8358;
+    --color-xiv-frame-b: #8a7349;
+    --color-xiv-frame-l: #9b8358;
+
+    --font-archivo: "Archivo Narrow", system-ui, sans-serif;
+}
+
 @layer components {
+    @font-face {
+        font-family: "Archivo Narrow";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("../font/ArchivoNarrow-VariableFont_wght.ttf") format("opentype");
+    }
+
     .h1 {
         font-size: var(--text-4xl);
         margin-bottom: calc(var(--spacing) * 3);

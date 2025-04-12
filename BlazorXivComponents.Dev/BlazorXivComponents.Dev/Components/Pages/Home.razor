@@ -2,6 +2,16 @@
 
 <PageTitle>Home</PageTitle>
 
-<h1 class="h1">Hello, world!</h1>
+<div id="container">
+    <fieldset>
+        <legend>@nameof(XivFrame)</legend>
 
-Welcome to your new app.
+        <XivFrame>XivFrame</XivFrame>
+    </fieldset>
+
+    <fieldset>
+        <legend>@nameof(XivWindow)</legend>
+        <XivWindow Label="XivWindow">XivWindow content</XivWindow>
+        <XivWindow Label="XivWindow non-formatted" Formatted="false">XivWindow content</XivWindow>
+    </fieldset>
+</div>

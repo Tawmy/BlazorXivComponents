@@ -1,0 +1,10 @@
+<div class="text-white
+    bg-gradient-to-b from-[rgb(99,97,99)] to-[rgba(49,48,49)] to-[2rem]
+    rounded-lg border-2 border-t-xiv-frame-t border-r-xiv-frame-r border-b-xiv-frame-b border-l-xiv-frame-l
+    shadow-[0_0.2em_0.2em_black,inset_0_0_0_2px_#262525,inset_0_0_6px_rgba(255,255,255,0.4),inset_0_3px_0_0_#afaaaf]">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public required RenderFragment ChildContent { get; set; }
+}
