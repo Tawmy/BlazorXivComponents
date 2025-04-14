@@ -22,7 +22,8 @@
         <XivCheckbox Checked="true">Checkbox checked</XivCheckbox>
         <XivWindow Label="XivCheckbox">
             <XivCheckbox>Checkbox</XivCheckbox>
-            <XivCheckbox Checked="true">Checkbox checked</XivCheckbox>
+            <XivCheckbox @bind-Checked="_checked">Checkbox checked with two way binding</XivCheckbox>
+            Checked: @_checked
         </XivWindow>
         <XivWindow Label="XivCheckbox in non-formatted window" Formatted="false">
             <XivCheckbox>Checkbox</XivCheckbox>
@@ -30,3 +31,7 @@
         </XivWindow>
     </fieldset>
 </div>
+
+@code {
+    private bool _checked = true;
+}
