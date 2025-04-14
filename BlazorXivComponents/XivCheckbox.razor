@@ -1,7 +1,8 @@
 @using Microsoft.AspNetCore.Components.Forms
 <div class="xiv-checkbox">
     <label>
-        <InputCheckbox @bind-Value:get="@Checked" @bind-Value:set="@CheckedChanged"/>
+        <InputCheckbox @bind-Value:get="@Checked" @bind-Value:set="@CheckedChanged"
+                       AdditionalAttributes="@CreateAdditionalAttributes()"/>
         @ChildContent
     </label>
 </div>
@@ -15,6 +16,14 @@
     {
         Checked = isChecked;
         return OnCheckedChanged.InvokeAsync();
+    }
+
+    private IReadOnlyDictionary<string, object> CreateAdditionalAttributes()
+    {
+        return new Dictionary<string, object>
+        {
+            { "disabled", !RendererInfo.IsInteractive }
+        };
     }
 
 }
