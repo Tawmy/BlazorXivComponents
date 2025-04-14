@@ -1,0 +1,32 @@
+﻿@page "/"
+@rendermode InteractiveAuto
+
+<PageTitle>Home</PageTitle>
+
+<div id="container">
+    <fieldset>
+        <legend>@nameof(XivFrame)</legend>
+
+        <XivFrame>XivFrame</XivFrame>
+    </fieldset>
+
+    <fieldset>
+        <legend>@nameof(XivWindow)</legend>
+        <XivWindow Label="XivWindow">XivWindow content</XivWindow>
+        <XivWindow Label="XivWindow non-formatted" Formatted="false">XivWindow content</XivWindow>
+    </fieldset>
+
+    <fieldset>
+        <legend>@nameof(XivCheckbox)</legend>
+        <XivCheckbox>Checkbox</XivCheckbox>
+        <XivCheckbox Checked="true">Checkbox checked</XivCheckbox>
+        <XivWindow Label="XivCheckbox">
+            <XivCheckbox>Checkbox</XivCheckbox>
+            <XivCheckbox Checked="true">Checkbox checked</XivCheckbox>
+        </XivWindow>
+        <XivWindow Label="XivCheckbox in non-formatted window" Formatted="false">
+            <XivCheckbox>Checkbox</XivCheckbox>
+            <XivCheckbox Checked="true">Checkbox checked</XivCheckbox>
+        </XivWindow>
+    </fieldset>
+</div>

@@ -1,0 +1,63 @@
+.xiv-checkbox {
+    * {
+        cursor: pointer;
+    }
+
+    *:hover ::deep input {
+        filter: brightness(1.2);
+        transition: filter 100ms;
+    }
+
+    ::deep input {
+        appearance: none;
+        margin: 0 0.5em 0 0;
+        width: 1.2em;
+        height: 1.2em;
+
+        background: linear-gradient(to top, #696462, #2F2D2C);
+
+        box-shadow: inset 0 0 0 2px #64615f /* inner border */,
+        inset 1px 1px 1px 1px rgba(0, 0, 0, 0.5), /* inner top left */ inset -1px -1px 1px 1px rgba(255, 255, 255, 0.2); /* inner bottom right */
+
+        /* pseudo shadows */
+        border-left: 1px solid #7A7876;
+        border-top: 1px solid #7D7A79;
+        border-right: 1px solid #1C1B1B;
+        border-bottom: 1px solid #151414;
+        border-radius: unset; /* iOS adds radius by default */
+
+        transform: translateY(0.25em);
+
+        transition: filter 350ms;
+
+        &:checked::before {
+            position: absolute;
+            content: '';
+            top: 2px;
+            left: 2px;
+            width: calc(100% - 4px);
+            height: calc(100% - 4px);
+            background: linear-gradient(to bottom, #F6BC17, #F4D147);
+
+            box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.25),
+            0 0 3px 2px #BB8300;
+        }
+    }
+}
+
+/* not nested because i could not get both before and after to work */
+::deep input:checked::after {
+    position: absolute;
+    content: '';
+    top: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 4px);
+    height: 1px;
+    border-radius: 100vmax;
+    background: linear-gradient(to right,
+    transparent,
+    rgba(255, 255, 255, 0.4) 20%,
+    rgba(255, 255, 255, 0.4) 80%,
+    transparent);
+}
