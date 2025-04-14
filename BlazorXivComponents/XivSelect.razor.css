@@ -1,0 +1,80 @@
+.xiv-select {
+    z-index: 10; /* needed to show little triangle on top */
+    --arrow-size: 0.5em;
+    --padding: 1.25em;
+
+    position: relative;
+    height: 2em;
+
+    &::before {
+        z-index: 1;
+        position: absolute;
+        content: '';
+
+        left: var(--padding);
+        top: 50%;
+        transform: translateY(-50%);
+        width: var(--arrow-size);
+        height: var(--arrow-size);
+        background: white;
+        clip-path: polygon(0 0, 100% 50%, 0 100%);
+    }
+
+    &:has(> select:disabled)::before {
+        filter: brightness(0.5); /* .xiv-select-select:disabled has same rule, this only darkens the triangle */
+    }
+
+    .inset-shadow {
+        position: absolute;
+        content: '';
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border: 1px solid transparent;
+        border-radius: 100vmax;
+        pointer-events: none; /* pass through to button */
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+        clip-path: polygon(0 0, 100% 0, 100% calc(50% - 1px), 0 calc(50% - 1px));
+    }
+}
+
+::deep select {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0 var(--padding) 0 calc(var(--arrow-size) + var(--padding) + 0.5em);
+    color: white;
+
+    background: linear-gradient(to bottom,
+    rgb(92, 92, 92),
+    rgb(72, 71, 71) calc(50% - 1px),
+    rgb(63, 62, 62) calc(50% - 1px),
+    rgb(63, 62, 62) calc(50%),
+    rgb(55, 55, 55) calc(50%),
+    rgb(74, 73, 73));
+
+    border-radius: 100vmax;
+    border: 1px solid rgb(32, 31, 32);
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.4);
+
+    /* hide default arrow */
+    appearance: none;
+
+    user-select: none;
+    -webkit-user-select: none;
+
+    &:hover:not(:disabled) {
+        filter: brightness(1.33);
+        cursor: pointer;
+    }
+}
+
+::deep select:focus {
+    outline: none;
+}
+
+::deep select:disabled {
+    filter: brightness(0.5);
+    opacity: 1; /* necessary for Chromium browsers */
+}
