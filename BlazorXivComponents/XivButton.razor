@@ -1,0 +1,17 @@
+<div>
+    <button class="relative flex justify-center items-center h-8 px-5
+        text-white text-nowrap no-underline select-none
+        rounded-full border border-[rgb(32,31,32)] shadow-md shadow-stone-950
+        after:absolute after:left-0 after:top-0 after:w-full after:h-full after:rounded-full after:pointer-events-none"
+            disabled="@IsDisabled" @onclick="OnClick">@ChildContent</button>
+</div>
+
+@code {
+    [Parameter] public required RenderFragment ChildContent { get; set; }
+
+    [Parameter] public EventCallback OnClick { get; init; }
+
+    [Parameter] public bool Disabled { get; set; }
+
+    private bool IsDisabled => Disabled || !RendererInfo.IsInteractive;
+}

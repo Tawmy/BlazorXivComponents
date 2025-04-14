@@ -25,13 +25,29 @@
             <XivCheckbox @bind-Checked="_checked">Checkbox checked with two way binding</XivCheckbox>
             Checked: @_checked
         </XivWindow>
-        <XivWindow Label="XivCheckbox in non-formatted window" Formatted="false">
+        <XivWindow Label="XivCheckbox non-formatted" Formatted="false">
             <XivCheckbox>Checkbox</XivCheckbox>
             <XivCheckbox Checked="true">Checkbox checked</XivCheckbox>
+        </XivWindow>
+    </fieldset>
+
+    <fieldset>
+        <legend>@nameof(XivButton)</legend>
+        <XivButton>This is a button</XivButton>
+        <XivButton Disabled="true">Disabled button</XivButton>
+        <XivWindow Label="XivButton">
+            <XivButton OnClick="_ => _buttonPressed = true">Interactive button</XivButton>
+            Button pressed: @_buttonPressed
+            <XivButton Disabled="true">Disabled button</XivButton>
+        </XivWindow>
+        <XivWindow Label="XivButton non-formatted" Formatted="false">
+            <XivButton>This is a button</XivButton>
+            <XivButton Disabled="true">Disabled button</XivButton>
         </XivWindow>
     </fieldset>
 </div>
 
 @code {
     private bool _checked = true;
+    private bool _buttonPressed;
 }
