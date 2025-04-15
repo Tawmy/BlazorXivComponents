@@ -11,7 +11,7 @@
 
     [Parameter] public bool Checked { get; set; }
     [Parameter] public EventCallback<bool> CheckedChanged { get; init; }
-    
+
     [Parameter] public bool Highlighted { get; set; }
     private string HighlightedClass => Highlighted ? "highlight" : string.Empty;
 

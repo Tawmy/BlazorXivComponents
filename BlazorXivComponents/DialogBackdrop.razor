@@ -1,0 +1,22 @@
+<div class="z-50 fixed left-0 top-0 w-full h-full pointer-events-none group @GroupClass">
+    <div class="w-full h-full flex justify-center items-center
+                group-[.open]:animate-container-show group-[.open]:pointer-events-auto group-[.close]:animate-container-hide">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    [Parameter] [EditorRequired] public required RenderFragment ChildContent { get; set; }
+
+    [Parameter] public BackdropState State { get; set; } = BackdropState.None;
+    // [Parameter] public EventCallback StateChanged { get; init; } TODO implement once backdrop can close dialog
+
+    private string GroupClass => State switch
+    {
+        BackdropState.None => string.Empty,
+        BackdropState.Open => "open",
+        BackdropState.Closed => "close",
+        _ => throw new ArgumentOutOfRangeException(nameof(State))
+    };
+
+}
