@@ -1,0 +1,75 @@
+@typeparam T
+
+@if (_options is not null)
+{
+    <div class="z-50 fixed left-0 top-0 w-full h-full
+                group @GroupClass">
+        <div class="w-full h-full flex justify-center items-center animate-container-show
+                group-[.closing]:animate-container-hide">
+            <div class="max-w-md m-4 animate-popup-open group-[.closing]:animate-popup-close">
+                <XivWindow Label="@_options.Label">
+                    <div>
+                        @_options.Content
+                    </div>
+                    @if (_options.CheckboxLabel is not null)
+                    {
+                        <XivCheckbox @bind-Checked="@_checkboxChecked">@_options.CheckboxLabel</XivCheckbox>
+                    }
+                    @if (_options.Warning is not null)
+                    {
+                        <div class="text-yellow-300">
+                            @_options.Warning
+                        </div>
+                    }
+                    @if (_options.Buttons.Any())
+                    {
+                        <div class="flex flex-wrap justify-center gap-4 px-4">
+                            @foreach (var button in _options.Buttons)
+                            {
+                                <XivButton OnClick="_ => Close(button.Value)">@button.Label</XivButton>
+                            }
+                        </div>
+                    }
+                </XivWindow>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private XivPopupOptions<T>? _options;
+    private TaskCompletionSource<T>? _tcs;
+    private bool _checkboxChecked;
+    private string GroupClass => _tcs?.Task.IsCompletedSuccessfully is true ? "closing" : string.Empty;
+
+    public async Task<XivPopupResult<T>> OpenAsync(XivPopupOptions<T> options)
+    {
+        _tcs = new TaskCompletionSource<T>();
+
+        _checkboxChecked = false; // TODO allow checkbox to be default by default
+        _options = options;
+        await InvokeAsync(StateHasChanged);
+
+        var result = await _tcs.Task;
+
+        _ = Task.Run(async () =>
+        {
+            // delay by 150ms to let closing animation play
+            await Task.Delay(150);
+
+            _options = null;
+            await InvokeAsync(StateHasChanged);
+        });
+
+        return new XivPopupResult<T>(result, _checkboxChecked);
+    }
+
+    private void Close(T value)
+    {
+        if (_tcs is { Task.IsCompleted: false })
+        {
+            _tcs.SetResult(value);
+        }
+    }
+
+}

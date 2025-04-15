@@ -7,6 +7,51 @@
     --color-xiv-frame-l: #9b8358;
 
     --font-archivo: "Archivo Narrow", system-ui, sans-serif;
+
+    --animate-popup-open: popup-open 200ms backwards;
+    --animate-popup-close: popup-close 150ms forwards;
+    --animate-container-show: container-show 200ms forwards;
+    --animate-container-hide: container-hide 150ms forwards;
+
+    @keyframes popup-open {
+        0% {
+            filter: opacity(0);
+            transform: translateY(20px);
+        }
+        100% {
+            filter: opacity(1);
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes popup-close {
+        0% {
+            filter: opacity(1);
+            transform: translateY(0);
+        }
+        100% {
+            filter: opacity(0);
+            transform: translateY(20px);
+        }
+    }
+
+    @keyframes container-show {
+        0% {
+            backdrop-filter: blur(0) brightness(1);
+        }
+        100% {
+            backdrop-filter: blur(6px) brightness(0.8);
+        }
+    }
+
+    @keyframes container-hide {
+        0% {
+            backdrop-filter: blur(6px) brightness(0.8);
+        }
+        100% {
+            backdrop-filter: blur(0) brightness(1);
+        }
+    }
 }
 
 @layer components {

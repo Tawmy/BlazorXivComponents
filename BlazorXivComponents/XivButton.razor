@@ -5,7 +5,7 @@
         disabled="@IsDisabled" @onclick="OnClick">@ChildContent</button>
 
 @code {
-    [Parameter][EditorRequired] public required RenderFragment ChildContent { get; set; }
+    [Parameter] [EditorRequired] public required RenderFragment ChildContent { get; set; }
 
     [Parameter] public EventCallback OnClick { get; init; }
 
