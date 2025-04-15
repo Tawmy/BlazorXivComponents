@@ -15,14 +15,20 @@
     <h1 class="h1">@nameof(XivCheckbox)</h1>
     <XivCheckbox>Checkbox</XivCheckbox>
     <XivCheckbox Checked="true">Checkbox checked</XivCheckbox>
+    <XivCheckbox Highlighted="true">Checkbox highlighted</XivCheckbox>
+    <XivCheckbox Checked="true" Highlighted="true">Checkbox checked highlighted</XivCheckbox>
     <XivWindow Label="@nameof(XivCheckbox)">
         <XivCheckbox>Checkbox</XivCheckbox>
         <XivCheckbox @bind-Checked="_checked">Checkbox checked with two way binding</XivCheckbox>
         Checked: @_checked
+        <XivCheckbox Highlighted="true">Checkbox highlighted</XivCheckbox>
+        <XivCheckbox Checked="true" Highlighted="true">Checkbox checked highlighted</XivCheckbox>
     </XivWindow>
     <XivWindow Label="@($"{nameof(XivCheckbox)} non-formatted")" Formatted="false">
         <XivCheckbox>Checkbox</XivCheckbox>
         <XivCheckbox Checked="true">Checkbox checked</XivCheckbox>
+        <XivCheckbox Highlighted="true">Checkbox highlighted</XivCheckbox>
+        <XivCheckbox Checked="true" Highlighted="true">Checkbox checked highlighted</XivCheckbox>
     </XivWindow>
 
     <h1 class="h1">@nameof(XivButton)</h1>

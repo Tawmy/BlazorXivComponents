@@ -1,4 +1,4 @@
-<div class="xiv-checkbox">
+<div class="xiv-checkbox @HighlightedClass">
     <label>
         <InputCheckbox @bind-Value:get="@Checked" @bind-Value:set="@SetCheckedAsync"
                        AdditionalAttributes="@CreateAdditionalAttributes()"/>
@@ -11,6 +11,9 @@
 
     [Parameter] public bool Checked { get; set; }
     [Parameter] public EventCallback<bool> CheckedChanged { get; init; }
+    
+    [Parameter] public bool Highlighted { get; set; }
+    private string HighlightedClass => Highlighted ? "highlight" : string.Empty;
 
     private async Task SetCheckedAsync(bool isChecked)
     {
