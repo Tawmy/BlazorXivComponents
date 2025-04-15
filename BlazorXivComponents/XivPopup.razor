@@ -1,0 +1,66 @@
+@typeparam T
+
+@if (_options is not null)
+{
+    <DialogBackdrop State="_state">
+        <div class="max-w-md m-4 group-[.open]:animate-popup-open group-[.close]:animate-popup-close">
+            <XivWindow Label="@_options.Label">
+                <div>
+                    @_options.Content
+                </div>
+                @if (_options.Checkbox is not null)
+                {
+                    <XivCheckbox @bind-Checked="@_checkboxChecked" Highlighted="_options.Checkbox.Highlighted">
+                        @_options.Checkbox.Label
+                    </XivCheckbox>
+                }
+                @if (_options.Warning is not null)
+                {
+                    <div class="text-yellow-300">
+                        @_options.Warning
+                    </div>
+                }
+                @if (_options.Buttons.Any())
+                {
+                    <div class="flex flex-wrap justify-center gap-4 px-4">
+                        @foreach (var button in _options.Buttons)
+                        {
+                            <XivButton OnClick="_ => CloseAsync(button.Value)">@button.Label</XivButton>
+                        }
+                    </div>
+                }
+            </XivWindow>
+        </div>
+    </DialogBackdrop>
+}
+
+@code {
+    private XivPopupOptions<T>? _options;
+    private TaskCompletionSource<T>? _tcs;
+    private bool _checkboxChecked;
+    private BackdropState _state;
+
+    public async Task<XivPopupResult<T>> OpenAsync(XivPopupOptions<T> options)
+    {
+        _checkboxChecked = options.Checkbox?.Checked ?? false;
+        _options = options;
+        _state = BackdropState.Open;
+        await InvokeAsync(StateHasChanged);
+
+        _tcs = new TaskCompletionSource<T>();
+        var result = await _tcs.Task;
+        return new XivPopupResult<T>(result, _checkboxChecked);
+    }
+
+    private async Task CloseAsync(T value)
+    {
+        if (_tcs is { Task.IsCompleted: false })
+        {
+            _tcs.SetResult(value);
+        }
+
+        _state = BackdropState.Closed;
+        await InvokeAsync(StateHasChanged);
+    }
+
+}
