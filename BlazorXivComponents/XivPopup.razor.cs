@@ -18,11 +18,18 @@ public record XivPopupOptions<T>
     public required string Content { get; init; }
 
     public ICollection<XivPopupButton<T>> Buttons { get; init; }
-    public string? CheckboxLabel { get; init; }
+    public XivCheckboxOptions? Checkbox { get; init; }
     public string? Warning { get; init; }
 }
 
 public record XivPopupButton<T>(string Label, T Value);
+
+public class XivCheckboxOptions
+{
+    public required string Label { get; init; }
+    public bool Checked { get; init; }
+    public bool Highlighted { get; init; }
+}
 
 public enum XivPopupType
 {

@@ -11,9 +11,11 @@
                     <div>
                         @_options.Content
                     </div>
-                    @if (_options.CheckboxLabel is not null)
+                    @if (_options.Checkbox is not null)
                     {
-                        <XivCheckbox @bind-Checked="@_checkboxChecked">@_options.CheckboxLabel</XivCheckbox>
+                        <XivCheckbox @bind-Checked="@_checkboxChecked" Highlighted="_options.Checkbox.Highlighted">
+                            @_options.Checkbox.Label
+                        </XivCheckbox>
                     }
                     @if (_options.Warning is not null)
                     {
@@ -46,7 +48,7 @@
     {
         _tcs = new TaskCompletionSource<T>();
 
-        _checkboxChecked = false; // TODO allow checkbox to be default by default
+        _checkboxChecked = options.Checkbox?.Checked ?? false;
         _options = options;
         await InvokeAsync(StateHasChanged);
 
