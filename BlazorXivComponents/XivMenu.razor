@@ -1,0 +1,57 @@
+@typeparam T
+<h3>XivMenu</h3>
+
+@if (_options is not null)
+{
+    <DialogBackdrop @bind-State="_state" AllowBackdropClose="true">
+        <div class="w-full max-w-md m-4 self-end group-[.open]:animate-popup-open group-[.close]:animate-popup-close"
+             @onclick:stopPropagation="true">
+            <XivWindow Label="@_options.Label">
+                @foreach (var option in _options.Options)
+                {
+                    @if (option.Url is not null)
+                    {
+                        <a href="@option.Url" class="grid">
+                            <XivButton>@($"{option.Label} ↗")</XivButton>
+                        </a>
+                    }
+                    else if (option.Value is not null)
+                    {
+                        <XivButton OnClick="_ => CloseAsync(option.Value)">
+                            @option.Label
+                        </XivButton>
+                    }
+                }
+            </XivWindow>
+        </div>
+    </DialogBackdrop>
+}
+
+@code {
+    private XivMenuOptions<T>? _options;
+    private TaskCompletionSource<T>? _tcs;
+    private BackdropState _state;
+
+    public async Task<T> OpenAsync(XivMenuOptions<T> options)
+    {
+        _options = options;
+        _state = BackdropState.Open;
+        await InvokeAsync(StateHasChanged);
+
+        _tcs = new TaskCompletionSource<T>();
+        var result = await _tcs.Task;
+        return result;
+    }
+
+    private async Task CloseAsync(T value)
+    {
+        if (_tcs is { Task.IsCompleted: false })
+        {
+            _tcs.SetResult(value);
+        }
+
+        _state = BackdropState.Closed;
+        await InvokeAsync(StateHasChanged);
+    }
+
+}

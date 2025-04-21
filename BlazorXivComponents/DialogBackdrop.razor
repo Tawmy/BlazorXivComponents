@@ -1,6 +1,7 @@
 <div class="z-50 fixed left-0 top-0 w-full h-full pointer-events-none group @GroupClass">
     <div class="w-full h-full flex justify-center items-center
-                group-[.open]:animate-container-show group-[.open]:pointer-events-auto group-[.close]:animate-container-hide">
+                group-[.open]:animate-container-show group-[.open]:pointer-events-auto group-[.close]:animate-container-hide"
+         @onclick="@CloseAsync">
         @ChildContent
     </div>
 </div>
@@ -9,7 +10,18 @@
     [Parameter] [EditorRequired] public required RenderFragment ChildContent { get; set; }
 
     [Parameter] public BackdropState State { get; set; } = BackdropState.None;
-    // [Parameter] public EventCallback StateChanged { get; init; } TODO implement once backdrop can close dialog
+    [Parameter] public EventCallback<BackdropState> StateChanged { get; init; }
+
+    /// <summary>
+    ///     If true, clicking the backdrop behind the <see cref="ChildContent" /> will close the backdrop.
+    /// </summary>
+    /// <remarks>
+    ///     Make sure to handle changes to the <see cref="GroupClass" /> within the <see cref="ChildContent" />.
+    ///     <br /><br />If there is a child component, you will probably also want to bind <see cref="State" />
+    ///     as it should stay in sync between the backdrop and child component.
+    /// </remarks>
+    [Parameter]
+    public bool AllowBackdropClose { get; set; }
 
     private string GroupClass => State switch
     {
@@ -18,5 +30,16 @@
         BackdropState.Closed => "close",
         _ => throw new ArgumentOutOfRangeException(nameof(State))
     };
+
+    private async Task CloseAsync()
+    {
+        if (!AllowBackdropClose)
+        {
+            return;
+        }
+
+        State = BackdropState.Closed;
+        await StateChanged.InvokeAsync(State);
+    }
 
 }

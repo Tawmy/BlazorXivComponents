@@ -65,47 +65,58 @@
     <XivPopup T="string" @ref="_popup"/>
     <XivWindow Label="@nameof(XivPopup<>)">
         <div class="flex flex-wrap gap-4">
-            <XivButton OnClick="_ => OpenPopup(XivPopupDataGenerator.CreateTextOnly)">
+            <XivButton OnClick="_ => OpenPopupAsync(XivPopupDataGenerator.CreateTextOnly)">
                 @nameof(XivPopupType.TextOnly)
             </XivButton>
-            <XivButton OnClick="_ => OpenPopup(XivPopupDataGenerator.CreateOk, true)">
+            <XivButton OnClick="_ => OpenPopupAsync(XivPopupDataGenerator.CreateOk, true)">
                 @nameof(XivPopupType.Ok)
             </XivButton>
-            <XivButton OnClick="_ => OpenPopup(XivPopupDataGenerator.CreateOkCancel, true)">
+            <XivButton OnClick="_ => OpenPopupAsync(XivPopupDataGenerator.CreateOkCancel, true)">
                 @nameof(XivPopupType.OkCancel)
             </XivButton>
-            <XivButton OnClick="_ => OpenPopup(XivPopupDataGenerator.CreateYesNo, true)">
+            <XivButton OnClick="_ => OpenPopupAsync(XivPopupDataGenerator.CreateYesNo, true)">
                 @nameof(XivPopupType.YesNo)
             </XivButton>
         </div>
         <div class="flex flex-wrap gap-4">
-            <XivButton OnClick="_ => OpenPopup(() =>
+            <XivButton OnClick="_ => OpenPopupAsync(() =>
                            XivPopupDataGenerator.CreateOkCancelWithCheckbox(false, false), true)">
                 checkbox
             </XivButton>
-            <XivButton OnClick="_ => OpenPopup(() =>
+            <XivButton OnClick="_ => OpenPopupAsync(() =>
                            XivPopupDataGenerator.CreateOkCancelWithCheckbox(false, true), true)">
                 highlighted checkbox
             </XivButton>
-            <XivButton OnClick="_ => OpenPopup(() =>
+            <XivButton OnClick="_ => OpenPopupAsync(() =>
                            XivPopupDataGenerator.CreateOkCancelWithCheckbox(true, false), true)">
                 with checked checkbox
             </XivButton>
-            <XivButton OnClick="_ => OpenPopup(() =>
+            <XivButton OnClick="_ => OpenPopupAsync(() =>
                            XivPopupDataGenerator.CreateOkCancelWithCheckbox(true, true), true)">
                 highlighted and checked checkbox
             </XivButton>
         </div>
         <div class="flex flex-wrap gap-4">
-            <XivButton OnClick="_ => OpenPopup(XivPopupDataGenerator.CreateOkCancelWithWarning, true)">
+            <XivButton OnClick="_ => OpenPopupAsync(XivPopupDataGenerator.CreateOkCancelWithWarning, true)">
                 warning
             </XivButton>
-            <XivButton OnClick="_ => OpenPopup(XivPopupDataGenerator.CreateOkCancelWithWarningAndCheckbox, true)">
+            <XivButton OnClick="_ => OpenPopupAsync(XivPopupDataGenerator.CreateOkCancelWithWarningAndCheckbox, true)">
                 warning and checkbox
             </XivButton>
         </div>
         Result: @_popupResult?.Value<br/>
         Checkbox checked: @(_popupResult?.CheckboxChecked is true ? "true" : "false")
+    </XivWindow>
+
+    <h1 class="h1">@nameof(XivMenu<>)</h1>
+    <XivMenu T="string" @ref="_menu"/>
+    <XivWindow Label="@nameof(XivMenu<>)">
+        <div class="flex flex-wrap gap-4">
+            <XivButton OnClick="_ => OpenMenuAsync(XivMenuDataGenerator.CreateSamplePopupMenu)">
+                popup menu
+            </XivButton>
+        </div>
+        Result: @_menuResult
     </XivWindow>
 </div>
 
@@ -115,6 +126,8 @@
     private string _selectedString = "option3";
     private XivPopup<string> _popup = null!;
     private XivPopupResult<string>? _popupResult;
+    private XivMenu<string> _menu = null!;
+    private string? _menuResult;
 
     private static ICollection<XivSelectCategory<string>> CreateSelectDataString()
     {
@@ -131,7 +144,7 @@
         return categories;
     }
 
-    private async Task OpenPopup(Func<XivPopupOptions<string>> dataGenerator, bool assign = false)
+    private async Task OpenPopupAsync(Func<XivPopupOptions<string>> dataGenerator, bool assign = false)
     {
         var options = dataGenerator.Invoke();
 
@@ -140,6 +153,12 @@
         {
             _popupResult = result;
         }
+    }
+
+    private async Task OpenMenuAsync(Func<XivMenuOptions<string>> dataGenerator)
+    {
+        var options = dataGenerator.Invoke();
+        _menuResult = await _menu.OpenAsync(options);
     }
 
 }
