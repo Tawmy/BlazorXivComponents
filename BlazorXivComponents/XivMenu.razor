@@ -12,7 +12,12 @@
                     @if (option.Url is not null)
                     {
                         <a href="@option.Url" class="grid">
-                            <XivButton>@($"{option.Label} ↗")</XivButton>
+                            <XivButton>
+                                <div class="grid grid-cols-[1fr_auto] w-full">
+                                    <div>@option.Label</div>
+                                    <div>@("↗")</div>
+                                </div>
+                            </XivButton>
                         </a>
                     }
                     else if (option.Value is not null)
