@@ -1,0 +1,8 @@
+﻿services:
+  dev:
+    image: blazor-xiv-components
+    build:
+      context: .
+      dockerfile: BlazorXivComponents.Dev/Dockerfile
+    labels:
+      - dev.orbstack.domains=blazor-xiv-components.local

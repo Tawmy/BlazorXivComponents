@@ -1,0 +1,8 @@
+<Solution>
+    <Folder Name="/Solution Items/">
+        <File Path="compose.yml"/>
+        <File Path="compose.local.yml"/>
+    </Folder>
+    <Project Path="BlazorXivComponents.Dev.Client/BlazorXivComponents.Dev.Client.csproj"/>
+    <Project Path="BlazorXivComponents.Dev/BlazorXivComponents.Dev.csproj"/>
+</Solution>

@@ -1,0 +1,8 @@
+﻿services:
+  dev:
+    image: ghcr.io/tawmy/blazorxivcomponents:0.0.1
+    container_name: blazor-xiv-components
+    restart: unless-stopped
+    environment:
+      LOGGING__LOGLEVEL__DEFAULT: Information
+      LOGGING__LOGLEVEL__MICROSOFT.ASPNETCORE: Warning
