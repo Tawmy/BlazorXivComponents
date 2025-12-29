@@ -22,7 +22,10 @@
                 bg-gradient-to-b from-[rgb(255,244,225)] to-[rgba(247,220,186)] to-[2rem] rounded-lg text-[rgb(76,52,47)]
                 shadow-[inset_0_0_6px_rgba(255,255,255,0.6),inset_0_1px_0_0_rgb(255,238,222),0_0_0_1px_rgb(12,14,16),0_2px_3px_1px_rgb(12,14,16)]
                 """,
-            Theme.Classic => string.Empty,
+            Theme.Classic =>
+                """
+                bg-[rgb(32,4,156)] border-classic text-white
+                """,
             Theme.ClearBlue => string.Empty,
             Theme.ClearWhite => string.Empty,
             Theme.ClearGreen => string.Empty,
@@ -39,9 +42,9 @@
 
         return Theme switch
         {
-            Theme.Dark => "border-image dark",
+            Theme.Dark => "border-image",
             Theme.Light => "border-image light",
-            Theme.Classic => string.Empty,
+            Theme.Classic => "active",
             Theme.ClearBlue => string.Empty,
             Theme.ClearWhite => string.Empty,
             Theme.ClearGreen => string.Empty,
