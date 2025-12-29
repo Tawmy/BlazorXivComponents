@@ -1,0 +1,10 @@
+.border-image {
+    border-image-outset: 4px;
+    border-image-slice: 40;
+    border-image-width: 8px;
+    border-radius: 4px;
+
+    &.dark {
+        border-image-source: url('img/border-dark.png');
+    }
+}

@@ -1,0 +1,47 @@
+<div class="@GetThemeClasses() @GetActiveThemeClasses()"
+     @onmouseenter="@(() => Active = true)" @onmouseleave="@(() => Active = false)">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public Theme Theme { get; set; }
+    [Parameter] public bool Active { get; set; }
+    [Parameter] [EditorRequired] public required RenderFragment ChildContent { get; set; }
+
+    private string GetThemeClasses()
+    {
+        return Theme switch
+        {
+            Theme.Dark => """
+                          bg-gradient-to-b from-[rgb(99,97,99)] to-[rgba(49,48,49)] to-[2rem] rounded-lg text-white
+                          shadow-[inset_0_0_6px_rgba(255,255,255,0.2),inset_0_1px_0_0_rgb(172,170,174),0_0_0_1px_rgb(12,14,16),0_2px_3px_1px_rgb(12,14,16)]
+                          """,
+            Theme.Light => string.Empty,
+            Theme.Classic => string.Empty,
+            Theme.ClearBlue => string.Empty,
+            Theme.ClearWhite => string.Empty,
+            Theme.ClearGreen => string.Empty,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+    }
+
+    private string GetActiveThemeClasses()
+    {
+        if (!Active)
+        {
+            return string.Empty;
+        }
+
+        return Theme switch
+        {
+            Theme.Dark => "border-image dark",
+            Theme.Light => string.Empty,
+            Theme.Classic => string.Empty,
+            Theme.ClearBlue => string.Empty,
+            Theme.ClearWhite => string.Empty,
+            Theme.ClearGreen => string.Empty,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+    }
+
+}
