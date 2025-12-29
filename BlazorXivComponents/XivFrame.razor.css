@@ -1,0 +1,22 @@
+.border-image {
+    border-image-outset: 4px;
+    border-image-slice: 40;
+    border-image-width: 8px;
+    border-radius: 4px;
+    border-image-source: url('img/border-dark.png');
+
+    &.light {
+        border-image-source: url('img/border-light.png');
+    }
+}
+
+.border-classic {
+    border-image-outset: 6px;
+    border-image-slice: 28 28 32 28;
+    border-image-width: 7px 7px 8px 7px;
+    border-image-source: url('img/border-classic.png');
+
+    &.active {
+        border-image-source: url('img/border-classic-active.png');
+    }
+}

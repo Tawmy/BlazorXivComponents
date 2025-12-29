@@ -1,0 +1,25 @@
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-width: min(600px, 100% - 2rem);
+    margin: 0 auto;
+
+    &::before {
+        z-index: -1;
+        position: absolute;
+        content: '';
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        width: 141%;
+        height: 1rem;
+        background: black;
+    }
+
+    .header {
+        font-size: 2rem;
+        margin-top: 1rem;
+    }
+}

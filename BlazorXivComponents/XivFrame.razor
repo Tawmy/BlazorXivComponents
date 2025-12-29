@@ -1,0 +1,88 @@
+<div class="@GetThemeClasses() @GetActiveThemeClasses()"
+     @onmouseenter="@(() => Active = true)" @onmouseleave="@(() => Active = false)">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public Theme Theme { get; set; }
+    [Parameter] public bool Active { get; set; }
+    [Parameter] [EditorRequired] public required RenderFragment ChildContent { get; set; }
+
+    private string GetThemeClasses()
+    {
+        return Theme switch
+        {
+            Theme.Dark =>
+                """
+                bg-gradient-to-b from-[rgb(99,97,99)] to-[rgba(49,48,49)] to-[2rem] rounded-lg text-white
+                shadow-[inset_0_0_6px_rgba(255,255,255,0.2),inset_0_1px_0_0_rgb(172,170,174),0_0_0_1px_rgb(12,14,16),0_2px_3px_1px_rgb(12,14,16)]
+                """,
+            Theme.Light =>
+                """
+                bg-gradient-to-b from-[rgb(255,244,225)] to-[rgba(247,220,186)] to-[2rem] rounded-lg text-[rgb(76,52,47)]
+                shadow-[inset_0_0_6px_rgba(255,255,255,0.6),inset_0_1px_0_0_rgb(255,238,222),0_0_0_1px_rgb(12,14,16),0_2px_3px_1px_rgb(12,14,16)]
+                """,
+            Theme.Classic =>
+                """
+                bg-[rgb(32,4,156)] border-classic text-white
+                """,
+            Theme.ClearBlue =>
+                """
+                relative bg-linear-176 from-[rgba(35,108,212,1)] from-[0.4rem] via-[rgba(35,108,212,0.33)] via-[2rem] to-transparent to-[4rem] text-white
+                shadow-[0_2px_3px_rgba(0,0,0,0.25)]
+                before:z-[-1] before:absolute before:content-[''] before:w-full before:h-full
+                before:bg-linear-to-b before:from-[rgb(35,62,114)] before:via-[rgba(34,40,70,0.9)] before:via-[1rem] before:to-[rgba(39,64,120,0.95)]
+                """,
+            Theme.ClearWhite =>
+                """
+                relative bg-linear-176 from-[rgba(236,236,236,1)] from-[0.4rem] via-[rgba(236,236,236,0.33)] via-[2rem] to-transparent to-[4rem] text-black
+                shadow-[0_2px_3px_rgba(0,0,0,0.25)]
+                before:z-[-1] before:absolute before:content-[''] before:w-full before:h-full
+                before:bg-linear-to-b before:from-[rgb(180,180,180)] before:via-[rgba(180,180,180,0.9)] before:via-[1rem] before:to-[rgba(206,206,206,0.95)]
+                """,
+            Theme.ClearGreen =>
+                """
+                relative bg-linear-176 from-[rgba(108,178,47,1)] from-[0.4rem] via-[rgba(108,178,47,0.33)] via-[2rem] to-transparent to-[4rem] text-white
+                shadow-[0_2px_3px_rgba(0,0,0,0.25)]
+                before:z-[-1] before:absolute before:content-[''] before:w-full before:h-full
+                before:bg-linear-to-b before:from-[rgb(62,97,36)] before:via-[rgba(38,82,27,0.9)] before:via-[1rem] before:to-[rgba(64,128,37,0.95)]
+                """,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+    }
+
+    private string GetActiveThemeClasses()
+    {
+        if (!Active)
+        {
+            return string.Empty;
+        }
+
+        return Theme switch
+        {
+            Theme.Dark => "border-image",
+            Theme.Light => "border-image light",
+            Theme.Classic => "active",
+            Theme.ClearBlue =>
+                """
+                after:z-[-1] after:absolute after:w-full after:h-full after:left-0 after:top-0 after:content-['']
+                after:bg-[rgba(255,255,255,0.025)]
+                after:shadow-[0_0_0_1px_rgb(64,110,220),inset_0_0_10px_rgba(64,110,220,0.75)]
+                """,
+            Theme.ClearWhite =>
+                """
+                after:z-[-1] after:absolute after:w-full after:h-full after:left-0 after:top-0 after:content-['']
+                after:bg-[rgba(255,255,255,0.05)]
+                after:shadow-[0_0_0_1px_rgb(220,220,220),inset_0_0_10px_2px_rgba(220,220,220,0.75)]
+                """,
+            Theme.ClearGreen =>
+                """
+                after:z-[-1] after:absolute after:w-full after:h-full after:left-0 after:top-0 after:content-['']
+                after:bg-[rgba(255,255,255,0.025)]
+                after:shadow-[0_0_0_1px_rgb(94,187,79),inset_0_0_10px_rgba(94,187,79,0.75)]
+                """,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+    }
+
+}
