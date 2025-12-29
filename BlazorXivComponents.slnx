@@ -5,4 +5,5 @@
     </Folder>
     <Project Path="BlazorXivComponents.Dev.Client/BlazorXivComponents.Dev.Client.csproj"/>
     <Project Path="BlazorXivComponents.Dev/BlazorXivComponents.Dev.csproj"/>
+    <Project Path="BlazorXivComponents/BlazorXivComponents.csproj"/>
 </Solution>
