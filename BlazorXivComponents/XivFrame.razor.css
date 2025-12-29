@@ -7,4 +7,8 @@
     &.dark {
         border-image-source: url('img/border-dark.png');
     }
+
+    &.light {
+        border-image-source: url('img/border-light.png');
+    }
 }
