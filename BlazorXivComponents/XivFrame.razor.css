@@ -11,9 +11,9 @@
 }
 
 .border-classic {
-    border-image-outset: 12px;
+    border-image-outset: 6px;
     border-image-slice: 28 28 32 28;
-    border-image-width: 14px 14px 16px 14px;
+    border-image-width: 7px 7px 8px 7px;
     border-image-source: url('img/border-classic.png');
 
     &.active {
