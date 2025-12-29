@@ -1,0 +1,12 @@
+services:
+  dev:
+    image: ghcr.io/tawmy/blazorxivcomponents:main
+    networks:
+      - reverse-proxy
+    labels:
+      caddy: blazor-xiv-components.tawmy.dev
+      caddy.reverse_proxy: "{{upstreams 8080}}"
+
+networks:
+  reverse-proxy:
+    external: true

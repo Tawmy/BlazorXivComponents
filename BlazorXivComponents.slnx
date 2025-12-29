@@ -1,6 +1,8 @@
 <Solution>
     <Folder Name="/Solution Items/">
+        <File Path=".github\workflows\build-and-push.yml"/>
         <File Path="compose.yml"/>
+        <File Path="compose.dev.yml"/>
         <File Path="compose.local.yml"/>
     </Folder>
     <Project Path="BlazorXivComponents.Dev.Client/BlazorXivComponents.Dev.Client.csproj"/>
