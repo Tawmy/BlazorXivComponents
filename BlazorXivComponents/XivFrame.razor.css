@@ -15,7 +15,7 @@
     border-image-slice: 28 28 32 28;
     border-image-width: 14px 14px 16px 14px;
     border-image-source: url('img/border-classic.png');
-    
+
     &.active {
         border-image-source: url('img/border-classic-active.png');
     }

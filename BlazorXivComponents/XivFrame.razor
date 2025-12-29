@@ -26,7 +26,13 @@
                 """
                 bg-[rgb(32,4,156)] border-classic text-white
                 """,
-            Theme.ClearBlue => string.Empty,
+            Theme.ClearBlue =>
+                """
+                relative bg-linear-176 from-[rgba(35,108,212,1.0)] from-[0.4rem] via-[rgba(35,108,212,0.33)] via-[2rem] to-[rgba(35,108,212,0)] to-[4rem] text-white
+                shadow-[0_2px_3px_rgba(0,0,0,0.25)]
+                before:z-[-1] before:absolute before:content-[''] before:w-full before:h-full
+                before:bg-linear-to-b before:from-[rgb(35,62,114)] before:via-[rgba(34,40,70,0.9)] before:via-[1rem] before:to-[rgba(39,64,120,0.95)]
+                """,
             Theme.ClearWhite => string.Empty,
             Theme.ClearGreen => string.Empty,
             _ => throw new ArgumentOutOfRangeException()
@@ -45,7 +51,12 @@
             Theme.Dark => "border-image",
             Theme.Light => "border-image light",
             Theme.Classic => "active",
-            Theme.ClearBlue => string.Empty,
+            Theme.ClearBlue =>
+                """
+                after:z-[-1] after:absolute after:w-full after:h-full after:left-0 after:top-0 after:content-['']
+                after:bg-[rgba(255,255,255,0.025)]
+                after:shadow-[0_0_0_1px_rgb(64,110,220),inset_0_0_10px_rgba(64,110,220,0.75)]
+                """,
             Theme.ClearWhite => string.Empty,
             Theme.ClearGreen => string.Empty,
             _ => throw new ArgumentOutOfRangeException()
