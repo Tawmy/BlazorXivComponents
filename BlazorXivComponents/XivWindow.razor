@@ -1,0 +1,23 @@
+<XivFrame>
+    <div class="p-3">
+        <div class="w-[125%] font-archivo text-3xl leading-none text-white/70
+                    origin-left scale-x-80 -translate-y-[0.1em]">
+            @Label
+        </div>
+        <XivDivider/>
+        <div class="@ChildContentStyle">
+            @ChildContent
+        </div>
+    </div>
+
+</XivFrame>
+
+@code {
+
+    [Parameter] [EditorRequired] public required string Label { get; set; }
+    [Parameter] [EditorRequired] public required RenderFragment ChildContent { get; set; }
+    [Parameter] public bool Formatted { get; set; } = true;
+
+    private string ChildContentStyle => Formatted ? "mx-3 mt-3 flex flex-col gap-3" : string.Empty;
+
+}
