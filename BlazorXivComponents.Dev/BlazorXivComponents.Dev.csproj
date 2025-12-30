@@ -12,7 +12,6 @@
     <ItemGroup>
         <ProjectReference Include="..\BlazorXivComponents.Dev.Client\BlazorXivComponents.Dev.Client.csproj"/>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.1"/>
-        <ProjectReference Include="..\BlazorXivComponents\BlazorXivComponents.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

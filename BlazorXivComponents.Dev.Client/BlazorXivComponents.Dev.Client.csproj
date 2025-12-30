@@ -10,6 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\BlazorXivComponents\BlazorXivComponents.csproj"/>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.1"/>
     </ItemGroup>
 
