@@ -5,22 +5,53 @@
     gap: 1em;
     max-width: min(600px, 100% - 2rem);
     margin: 0 auto;
+    padding-bottom: 2rem;
 
-    &::before {
-        z-index: -1;
-        position: absolute;
-        content: '';
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(-45deg);
-        width: 141%;
-        height: 1rem;
-        background: black;
+    .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        button {
+            background: white;
+            padding: 0.5rem 1rem;
+
+            &:hover {
+                background: #eee;
+                cursor: pointer;
+            }
+
+            &.active {
+                box-shadow: inset 0 0 0 2px red;
+            }
+        }
+    }
+
+    .xiv-frame {
+        position: relative;
+
+        &::before, &::after {
+            z-index: -2;
+            position: absolute;
+            content: '';
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(20deg);
+            height: 125%;
+            width: 1rem;
+            background: black;
+        }
+
+        &::after {
+            left: calc(50% + 3rem);
+            transform: translate(-50%, -50%) rotate(20deg);
+            background: white;
+        }
     }
 
     .header {
         font-size: 2rem;
-        margin-top: 1rem;
+        margin-top: 2rem;
         color: white;
     }
 }

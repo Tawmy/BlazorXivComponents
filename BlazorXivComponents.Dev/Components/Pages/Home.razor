@@ -4,26 +4,57 @@
 <PageTitle>Blazor XIV Components</PageTitle>
 
 <div class="container">
-    <div class="header">@nameof(XivFrame)</div>
+    <h1 class="header">Theme</h1>
+    <div class="buttons">
+        <button class="@GetButtonClass(Theme.Dark)" @onclick="@(() => Theme = Theme.Dark)">
+            @nameof(Theme.Dark)
+        </button>
+        <button class="@GetButtonClass(Theme.Light)" @onclick="@(() => Theme = Theme.Light)">
+            @nameof(Theme.Light)
+        </button>
+        <button class="@GetButtonClass(Theme.Classic)" @onclick="@(() => Theme = Theme.Classic)">
+            @nameof(Theme.Classic)
+        </button>
+        <button class="@GetButtonClass(Theme.ClearBlue)" @onclick="@(() => Theme = Theme.ClearBlue)">
+            @nameof(Theme.ClearBlue)
+        </button>
+        <button class="@GetButtonClass(Theme.ClearWhite)" @onclick="@(() => Theme = Theme.ClearWhite)">
+            @nameof(Theme.ClearWhite)
+        </button>
+        <button class="@GetButtonClass(Theme.ClearGreen)" @onclick="@(() => Theme = Theme.ClearGreen)">
+            @nameof(Theme.ClearGreen)
+        </button>
+    </div>
 
-    <XivFrame Theme="Theme.Dark">@nameof(XivFrame)<br/><br/>Theme: @nameof(Theme.Dark)</XivFrame>
-    <XivFrame Theme="Theme.Light">@nameof(XivFrame)<br/><br/>Theme: @nameof(Theme.Light)</XivFrame>
-    <XivFrame Theme="Theme.Classic">@nameof(XivFrame)<br/><br/>Theme: @nameof(Theme.Classic)</XivFrame>
-    <XivFrame Theme="Theme.ClearBlue">@nameof(XivFrame)<br/><br/>Theme: @nameof(Theme.ClearBlue)</XivFrame>
-    <XivFrame Theme="Theme.ClearWhite">@nameof(XivFrame)<br/><br/>Theme: @nameof(Theme.ClearWhite)</XivFrame>
-    <XivFrame Theme="Theme.ClearGreen">@nameof(XivFrame)<br/><br/>Theme: @nameof(Theme.ClearGreen)</XivFrame>
+    <h1 class="header">@nameof(XivFrame)</h1>
+    <div class="xiv-frame">
+        <XivFrame Theme="@Theme">@nameof(XivFrame)<br/><br/>Theme: @nameof(Theme.Dark)</XivFrame>
+    </div>
 
-    <div class="header">@nameof(XivDivider)</div>
+    <h1 class="header">@nameof(XivDivider)</h1>
     <XivDivider/>
-    <XivFrame><br/>
+    <XivFrame Theme="@Theme">
+        <br/>
         <XivDivider/>
-        <br/></XivFrame>
+        <br/>
+    </XivFrame>
 
-    <div class="header">@nameof(XivWindow)</div>
-    <XivWindow Label="XivWindow label">
+    <h1 class="header">@nameof(XivWindow)</h1>
+    <XivWindow Theme="@Theme" Label="XivWindow label">
         Content here
     </XivWindow>
-    <XivWindow Label="Unformatted XivWindow" Formatted="false">
+    <XivWindow Theme="@Theme" Label="Unformatted XivWindow" Formatted="false">
         Content here
     </XivWindow>
 </div>
+
+@code {
+
+    private Theme Theme { get; set; }
+
+    private string GetButtonClass(Theme theme)
+    {
+        return Theme == theme ? "active" : string.Empty;
+    }
+
+}
