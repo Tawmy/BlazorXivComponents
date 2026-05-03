@@ -4,15 +4,22 @@ WORKDIR /app
 EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
-RUN apt update -y && apt upgrade -y && apt install nodejs npm -y
+ARG TARGETARCH
+
+RUN case "${TARGETARCH}" in \
+        "arm64")  TW_ARCH="arm64" ;; \
+        *)        TW_ARCH="x64" ;; \
+    esac && \
+    curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/download/v4.2.4/tailwindcss-linux-${TW_ARCH} && \
+    chmod +x tailwindcss-linux-${TW_ARCH} && \
+    mv tailwindcss-linux-${TW_ARCH} /usr/local/bin/tailwindcss
+
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["BlazorXivComponents.Dev/BlazorXivComponents.Dev.csproj", "BlazorXivComponents.Dev/"]
 COPY ["BlazorXivComponents.Dev.Client/BlazorXivComponents.Dev.Client.csproj", "BlazorXivComponents.Dev.Client/"]
 RUN dotnet restore "BlazorXivComponents.Dev/BlazorXivComponents.Dev.csproj"
 COPY . .
-WORKDIR "/src/BlazorXivComponents"
-RUN npm install
 WORKDIR "/src/BlazorXivComponents.Dev"
 RUN dotnet build "./BlazorXivComponents.Dev.csproj" -c $BUILD_CONFIGURATION -o /app/build
 

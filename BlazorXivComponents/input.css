@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@source "./**/*.razor";
+@source "./**/*.cs";
 
 @theme {
     --font-archivo: "Archivo Narrow", system-ui, sans-serif;

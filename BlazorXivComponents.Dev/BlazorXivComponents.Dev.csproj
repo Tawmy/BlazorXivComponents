@@ -10,6 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Tailwind.Extensions.AspNetCore" Version="1.1.2"/>
         <ProjectReference Include="..\BlazorXivComponents.Dev.Client\BlazorXivComponents.Dev.Client.csproj"/>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.1"/>
     </ItemGroup>
