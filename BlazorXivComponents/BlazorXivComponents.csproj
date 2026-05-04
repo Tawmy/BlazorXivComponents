@@ -14,12 +14,4 @@
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.1"/>
     </ItemGroup>
 
-    <Target Name="TailwindBuild" BeforeTargets="Build">
-        <Exec Command="tailwindcss -i input.css -o wwwroot/style.css"/>
-    </Target>
-
-    <Target Name="TailwindPublish" BeforeTargets="Publish">
-        <Exec Command="tailwindcss -i input.css -o wwwroot/style.css --minify"/>
-    </Target>
-
 </Project>

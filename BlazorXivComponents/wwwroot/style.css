@@ -1,0 +1,13 @@
+@import url("preflight.css");
+
+body {
+    font-family: system-ui, sans-serif;
+}
+
+@font-face {
+    font-family: "Archivo Narrow";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("font/ArchivoNarrow-VariableFont_wght.ttf") format("truetype");
+}

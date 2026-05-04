@@ -1,22 +1,131 @@
-.border-image {
-    border-image-outset: 4px;
-    border-image-slice: 40;
-    border-image-width: 8px;
-    border-radius: 4px;
-    border-image-source: url('img/border-dark.png');
+.xiv-frame {
+    border-radius: 0.5rem;
+
+    &.dark {
+        background: linear-gradient(to bottom, rgb(99, 97, 99), rgb(49, 48, 49) 2rem);
+        color: white;
+        box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.2),
+        inset 0 1px 0 0 rgb(172, 170, 174),
+        0 0 0 1px rgb(12, 14, 16),
+        0 2px 3px 1px rgb(12, 14, 16);
+
+        &.active {
+            border-radius: 4px;
+            border-image-source: url('img/border-dark.png');
+            border-image-slice: 40;
+            border-image-width: 8px;
+            border-image-outset: 4px;
+        }
+    }
 
     &.light {
-        border-image-source: url('img/border-light.png');
+        background: linear-gradient(to bottom, rgb(255, 244, 225), rgb(247, 220, 186) 2rem);
+        color: rgb(76, 52, 47);
+        box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.6),
+        inset 0 1px 0 0 rgb(255, 238, 222),
+        0 0 0 1px rgb(12, 14, 16),
+        0 2px 3px 1px rgb(12, 14, 16);
+
+        &.active {
+            border-radius: 4px;
+            border-image-source: url('img/border-light.png');
+            border-image-slice: 40;
+            border-image-width: 8px;
+            border-image-outset: 4px;
+        }
     }
-}
 
-.border-classic {
-    border-image-outset: 6px;
-    border-image-slice: 28 28 32 28;
-    border-image-width: 7px 7px 8px 7px;
-    border-image-source: url('img/border-classic.png');
+    &.classic {
+        background: rgb(32, 4, 156);
+        color: white;
+        border-image-source: url('img/border-classic.png');
+        border-image-slice: 28 28 32 28;
+        border-image-width: 7px 7px 8px 7px;
+        border-image-outset: 6px;
 
-    &.active {
-        border-image-source: url('img/border-classic-active.png');
+        &.active {
+            border-image-source: url('img/border-classic-active.png');
+        }
+    }
+
+    &.clear {
+        position: relative;
+        color: white;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+        }
+
+        &.active::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+        }
+
+        &.blue {
+            background: linear-gradient(176deg,
+            rgb(35, 108, 212) 0.4rem,
+            rgba(35, 108, 212, 0.33) 2rem,
+            transparent 4rem);
+
+            &::before {
+                background: linear-gradient(to bottom,
+                rgb(35, 62, 114),
+                rgba(34, 40, 70, 0.9) 1rem,
+                rgba(39, 64, 120, 0.95));
+            }
+
+            &.active::after {
+                background: rgba(255, 255, 255, 0.025);
+                box-shadow: 0 0 0 1px rgb(64, 110, 220),
+                inset 0 0 10px rgba(64, 110, 220, 0.75);
+            }
+        }
+
+        &.white {
+            color: black;
+            background: linear-gradient(176deg,
+            rgb(236, 236, 236) 0.4rem,
+            rgba(236, 236, 236, 0.33) 2rem,
+            transparent 4rem);
+
+            &::before {
+                background: linear-gradient(to bottom,
+                rgb(180, 180, 180),
+                rgba(180, 180, 180, 0.9) 1rem,
+                rgba(206, 206, 206, 0.95));
+            }
+
+            &.active::after {
+                background: rgba(255, 255, 255, 0.05);
+                box-shadow: 0 0 0 1px rgb(220, 220, 220),
+                inset 0 0 10px 2px rgba(220, 220, 220, 0.75);
+            }
+        }
+
+        &.green {
+            background: linear-gradient(176deg,
+            rgb(108, 178, 47) 0.4rem,
+            rgba(108, 178, 47, 0.33) 2rem,
+            transparent 4rem);
+
+            &::before {
+                background: linear-gradient(to bottom,
+                rgb(62, 97, 36),
+                rgba(38, 82, 27, 0.9) 1rem,
+                rgba(64, 128, 37, 0.95));
+            }
+
+            &.active::after {
+                background: rgba(255, 255, 255, 0.025);
+                box-shadow: 0 0 0 1px rgb(94, 187, 79),
+                inset 0 0 10px rgba(94, 187, 79, 0.75);
+            }
+        }
     }
 }

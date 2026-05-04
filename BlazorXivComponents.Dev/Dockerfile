@@ -4,16 +4,6 @@ WORKDIR /app
 EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
-ARG TARGETARCH
-
-RUN case "${TARGETARCH}" in \
-        "arm64")  TW_ARCH="arm64" ;; \
-        *)        TW_ARCH="x64" ;; \
-    esac && \
-    curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/download/v4.2.4/tailwindcss-linux-${TW_ARCH} && \
-    chmod +x tailwindcss-linux-${TW_ARCH} && \
-    mv tailwindcss-linux-${TW_ARCH} /usr/local/bin/tailwindcss
-
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["BlazorXivComponents.Dev/BlazorXivComponents.Dev.csproj", "BlazorXivComponents.Dev/"]
